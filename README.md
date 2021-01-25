@@ -4,7 +4,7 @@ The application is a portal where service providers can make their work availabl
 
 The application was developed in React Native, and nosql Firebase database.
 
-![Screen 1](/img/screen1.png "")
+![Screen 1](/img/screen1.png ""){:height="700px" width="400px"}
 ![Screen 2](/img/screen2.png "")
 ![Screen 3](/img/screen3.png "")
 ![Screen 4](/img/screen4.png "")
