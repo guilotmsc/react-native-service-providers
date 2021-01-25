@@ -1,0 +1,164 @@
+import React, { Component } from "react";
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableWithoutFeedback,
+    Dimensions,
+    ScrollView,
+    PixelRatio,
+    Image,
+    Modal
+} from "react-native";
+import Gallery from 'react-native-image-gallery';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
+import Swiper from 'react-native-swiper';
+import { colors, fonts } from './styles';
+
+import { withStyles } from '@material-ui/styles';
+import { Card, CardHeader } from 'react-native-material-ui';
+
+// import CardActionArea from '@material-ui/core/CardActionArea';
+// import CardActions from '@material-ui/core/CardActions';
+// import CardContent from '@material-ui/core/CardContent';
+// import CardMedia from '@material-ui/core/CardMedia';
+// import Button from '@material-ui/core/Button';
+// import Typography from '@material-ui/core/Typography';
+
+const { width } = Dimensions.get('window');
+const height = width * 0.8;
+
+const Slide = props => ( <View>
+            <Image style={styles.image} source={{uri: props.uri}} />
+          </View>
+)
+
+
+class OfferDetails extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      imgs: [
+        'https://firebasestorage.googleapis.com/v0/b/mega-1ac5a.appspot.com/o/offerImages%2F036fd6d5fb240faded07c35fe5805a2a%2Fproduto1.jpg?alt=media&token=131d20d4-9525-4f13-a632-08fe214e4a00',
+        'https://firebasestorage.googleapis.com/v0/b/mega-1ac5a.appspot.com/o/offerImages%2F036fd6d5fb240faded07c35fe5805a2a%2Fproduto2.jpg?alt=media&token=6a65d659-4ad9-418b-8541-4e1c95b8c470'
+      ],
+      modalVisible: props.modalVisible,
+      title: '',
+      description: '',
+      amount: 0,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      modalVisible: nextProps.modalVisible,
+      title: nextProps.title,
+      description: nextProps.description,
+      amount: nextProps.amount
+    });
+  }
+
+  componentWillMount() {
+    
+  }
+
+  renderImages() {
+    let images = [];
+
+    for (var i = 0; i < 2; i++) {
+      images.push(
+        <View >
+          <Image style={styles.image} source={{uri: 'https://firebasestorage.googleapis.com/v0/b/mega-1ac5a.appspot.com/o/offerImages%2F036fd6d5fb240faded07c35fe5805a2a%2Fproduto1.jpg?alt=media&token=131d20d4-9525-4f13-a632-08fe214e4a00'}} />
+        </View>
+      );
+    }
+
+    return images;
+  }
+
+  imgssss() {
+    let imgs = []
+    
+
+    return imgs;
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={this.state.modalVisible}
+        onRequestClose={() => {
+          this.props.setModalVisible(false);
+        }}
+      >
+        <View style={styles.mainSection}>
+          <Swiper autoplay showsButtons={false} showsPagination={false} style={styles.swiper}>
+              {
+                this.state.imgs.map((item, i) => <Slide
+                  uri={item}
+                />)
+              }
+            </Swiper>
+            
+            <View style={styles.mainSection}>
+              <Text style={{ fontSize: 24, fontWeight: '700', paddingHorizontal: 10 }}>
+                {this.state.title}
+              </Text>
+              <Text style={{ fontSize: 24, fontWeight: '700', textAlign: 'right', paddingHorizontal: 10, color: colors.green }}>
+                R$ {this.state.amount}
+              </Text>
+              <Text style={{ fontSize: 18, fontWeight: '400', paddingHorizontal: 10 }}>
+                  Descrição
+              </Text>
+              <View style={styles.separator} />
+              <Text style={{paddingHorizontal: 10, fontSize: 18}}>
+                {this.state.description}
+              </Text>
+            </View>
+            
+        </View>
+      </Modal>
+    );
+  }
+}
+export default OfferDetails;
+
+const styles = StyleSheet.create({
+  scrollContainer: {
+    flex: 1
+  },
+  image: {
+    width,
+    height
+  },
+  swiper: {
+    width
+  },
+  actions: {
+    display: 'flex',
+  },
+  avatar: {
+    backgroundColor: 'red',
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#34495e',
+  },
+  mainSection: {
+    flex: 1,
+    backgroundColor: "white"
+  },
+  separator: {
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
+    height: 1 / PixelRatio.get(),
+    marginVertical: 10,
+  },
+});
