@@ -4,6 +4,14 @@ The application is a portal where service providers can make their work availabl
 
 The application was developed in React Native, and nosql Firebase database.
 
+## Execução:
+```
+  git clone git@github.com:guilotmsc/react-native-service-providers.git
+  cd react-native-service-providers
+  yarn install
+  expo start
+```
+
 <p float="left">
   <img src="https://github.com/guilotmsc/react-native-service-providers/blob/master/img/screen1.png" width="400" height="790">
   <img src="https://github.com/guilotmsc/react-native-service-providers/blob/master/img/screen2.png" width="400" height="790">
